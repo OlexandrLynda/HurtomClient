@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Img/logo.png</file>
+        <file>XmlList.qml</file>
+        <file>FeedDelegate.qml</file>
     </qresource>
 </RCC>
