@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Img/logo.png</file>
+        <file>Img/drawer.png</file>
+        <file>Img/cropped-logo.png</file>
     </qresource>
 </RCC>
