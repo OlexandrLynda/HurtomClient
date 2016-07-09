@@ -2,8 +2,7 @@ import QtQuick 2.7
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
-import QtQuick.Dialogs 1.2
-
+import Qt.labs.settings 1.0
 
 ApplicationWindow {
     id: window
@@ -11,6 +10,11 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("Hurtom client")
+
+    Settings {
+        id:settings
+        property string style: "Material"
+    }
 
     header: ToolBar{
         Material.foreground: "white"
@@ -56,8 +60,18 @@ ApplicationWindow {
             anchors.fill: parent
 
             delegate: ItemDelegate{
+                id: item
                 width: parent.width
                 text: model.title
+
+                Image{
+                    id: logo
+                    width: item.height
+                    height: width
+                    anchors.right: item.right
+                    fillMode: Image.PreserveAspectFit
+                    source: "Img/drawer.png" //set model.img
+                }
                 highlighted: ListView.isCurrentItem
                 onClicked: {
                     if(listView.currentIndex != index){
@@ -70,7 +84,16 @@ ApplicationWindow {
             }
 
             model: ListModel{
-//                ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
+                ListElement{title: "Загальне"; img: ""; source: ""}
+                ListElement{title: "Відео Гуртом"}
+                ListElement{title: "Фільми" }
+                ListElement{title: "Музика" }
+                ListElement{title: "Література"}
+                ListElement{title: "Програми" }
+                ListElement{title: "Ігри" }
+                ListElement{title: "Озвучення"}
+                ListElement{title: "Смітник" }
+                //                ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
             }
             ScrollIndicator.vertical: ScrollIndicator{}
         }
@@ -106,7 +129,7 @@ ApplicationWindow {
         }
     }
 
-    Popup{ //was Popup
+    Popup{
         id: loadPopup
         x: (parent.width - width) / 2
         y: parent.height / 6
@@ -148,21 +171,4 @@ ApplicationWindow {
             }
         }
     }
-
-//    Dialog {
-//        id: loadPopup
-//        visible: false
-//        title: "Blue sky dialog"
-
-//        contentItem: Rectangle {
-//            color: "lightskyblue"
-//            implicitWidth: 400
-//            implicitHeight: 100
-//            Text {
-//                text: "Hello blue sky!"
-//                color: "navy"
-//                anchors.centerIn: parent
-//            }
-//        }
-//    }
 }
