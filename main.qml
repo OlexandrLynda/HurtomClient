@@ -27,7 +27,6 @@ ApplicationWindow {
                 onClicked:
                 {
                     drawer.open()
-                    loadPopup.open() //temp only to test
                 }
             }
 
@@ -58,33 +57,39 @@ ApplicationWindow {
                 width: parent.width
                 text: model.title
 
-                Image{
-                    id: logo
-                    width: item.height
-                    height: width
-                    anchors.right: item.right
-                    fillMode: Image.PreserveAspectFit
-                    source: "Img/drawer.png" //set model.img
-                }
+//                Image{
+//                    id: logo
+//                    width: item.height
+//                    height: width
+//                    anchors.right: item.right
+//                    fillMode: Image.PreserveAspectFit
+//                    source: "Img/drawer.png" //set model.img
+//                }
                 highlighted: ListView.isCurrentItem
                 onClicked: {
                     if(listView.currentIndex != index){
                         listView.currentIndex
                         titleLabel.text = model.title
-                        stackView.replace(model.source)
+                        //stackView.replace(model.source)
+                        if(model.flags !== "no_http"){
+                        rssNews.feedUrl = model.source
+                        }
+                        else{
+
+                        }
                     }
                     drawer.close()
                 }
             }
 
             model: ListModel{
-                ListElement{title: "Загальне"; img: ""; source: ""}
-                ListElement{title: "Відео Гуртом"}
-                ListElement{title: "Фільми" }
-                ListElement{title: "Музика" }
-                ListElement{title: "Література"}
-                ListElement{title: "Програми" }
-                ListElement{title: "Ігри" }
+                ListElement{title: "Загальне"; img: ""; source: "https://toloka.to/rss.php?t=1&lite=1&cat=11&thumbs=1"}
+                ListElement{title: "Відео Гуртом"; flags: "no_http"}
+                ListElement{title: "Фільми"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=8&toronly=1&thumbs=1"}
+                ListElement{title: "Музика"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=7&toronly=1&thumbs=1"}
+                ListElement{title: "Література"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=13&toronly=1&thumbs=1"}
+                ListElement{title: "Програми"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=3&toronly=1&thumbs=1"}
+                ListElement{title: "Ігри"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=4&toronly=1&thumbs=1"}
                 ListElement{title: "Озвучення"}
                 ListElement{title: "Смітник" }
                 //ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
@@ -122,7 +127,17 @@ ApplicationWindow {
             }
         }
     }
-//    XmlList{}
+    XmlList{
+        id: rssNews
+        onLoadingChanged: {
+            if(loading == true){
+                loadPopup.open()
+            }
+            else{
+                loadPopup.close()
+            }
+        }
+    }
 
     Popup{
         id: loadPopup
@@ -155,6 +170,7 @@ ApplicationWindow {
                 verticalAlignment: Qt.AlignVCenter
                 anchors.top: cropLogo.bottom
                 Layout.fillWidth: true
+                anchors.bottomMargin: 20
 
             }
 
