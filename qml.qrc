@@ -4,5 +4,7 @@
         <file>Img/logo.png</file>
         <file>Img/drawer.png</file>
         <file>Img/cropped-logo.png</file>
+        <file>XmlList.qml</file>
+        <file>FeedDelegate.qml</file>
     </qresource>
 </RCC>

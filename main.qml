@@ -122,6 +122,7 @@ ApplicationWindow {
             }
         }
     }
+//    XmlList{}
 
     Popup{
         id: loadPopup
