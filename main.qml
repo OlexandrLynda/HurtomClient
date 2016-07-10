@@ -90,8 +90,8 @@ ApplicationWindow {
                 ListElement{title: "Література"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=13&toronly=1&thumbs=1"}
                 ListElement{title: "Програми"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=3&toronly=1&thumbs=1"}
                 ListElement{title: "Ігри"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=4&toronly=1&thumbs=1"}
-                ListElement{title: "Озвучення"}
-                ListElement{title: "Смітник" }
+                ListElement{title: "Озвучення"; flags: "no_http"}
+                ListElement{title: "Смітник"; flags: "no_http" }
                 //ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
             }
             ScrollIndicator.vertical: ScrollIndicator{}
