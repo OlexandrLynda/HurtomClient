@@ -2,7 +2,6 @@ import QtQuick 2.7
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
-import Qt.labs.settings 1.0
 
 ApplicationWindow {
     id: window
@@ -10,11 +9,6 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("Hurtom client")
-
-    Settings {
-        id:settings
-        property string style: "Material"
-    }
 
     header: ToolBar{
         Material.foreground: "white"
@@ -93,7 +87,7 @@ ApplicationWindow {
                 ListElement{title: "Ігри" }
                 ListElement{title: "Озвучення"}
                 ListElement{title: "Смітник" }
-                //                ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
+                //ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
             }
             ScrollIndicator.vertical: ScrollIndicator{}
         }
