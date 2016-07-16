@@ -11,6 +11,7 @@ ApplicationWindow {
     title: qsTr("Hurtom client")
 
     header: ToolBar{
+        id: toolBar
         Material.foreground: "white"
 
         RowLayout{
@@ -47,24 +48,27 @@ ApplicationWindow {
         width: Math.min(window.width, window.height) / 3 * 2
         height: window.height
 
+        Rectangle {
+            id: header
+            width: parent.width
+            height: toolBar.height
+            color: "red"
+        }
+
         ListView{
             id: listView
             currentIndex: -1
-            anchors.fill: parent
+            anchors.top: header.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: footer.top
+            clip: true
 
             delegate: ItemDelegate{
                 id: item
                 width: parent.width
                 text: model.title
 
-//                Image{
-//                    id: logo
-//                    width: item.height
-//                    height: width
-//                    anchors.right: item.right
-//                    fillMode: Image.PreserveAspectFit
-//                    source: "Img/drawer.png" //set model.img
-//                }
                 highlighted: ListView.isCurrentItem
                 onClicked: {
                     if(listView.currentIndex != index){
@@ -72,7 +76,7 @@ ApplicationWindow {
                         titleLabel.text = model.title
                         //stackView.replace(model.source)
                         if(model.flags !== "no_http"){
-                        rssNews.feedUrl = model.source
+                            rssNews.feedUrl = model.source
                         }
                         else{
 
@@ -95,6 +99,13 @@ ApplicationWindow {
                 //ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
             }
             ScrollIndicator.vertical: ScrollIndicator{}
+        }
+        Rectangle {
+            id: footer
+            anchors.bottom: parent.bottom
+            width: parent.width
+            height: toolBar.height
+            color: "green"
         }
     }
 
