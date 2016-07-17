@@ -48,11 +48,16 @@ ApplicationWindow {
         width: Math.min(window.width, window.height) / 3 * 2
         height: window.height
 
-        Rectangle {
+        Rectangle{
             id: header
             width: parent.width
             height: toolBar.height
-            color: "red"
+            TextField {
+                implicitWidth: parent.width / 10 * 9
+                implicitHeight: parent.height / 10 * 9
+                anchors.centerIn: parent
+                placeholderText: "Пошук ..."
+            }
         }
 
         ListView{
@@ -106,6 +111,12 @@ ApplicationWindow {
             width: parent.width
             height: toolBar.height
             color: "green"
+
+            RowLayout{
+                ToolButton{text: "1"}
+                ToolButton{text: "2"}
+                ToolButton{text: "3"}
+            }
         }
     }
 
@@ -150,47 +161,7 @@ ApplicationWindow {
         }
     }
 
-    Popup{
+    LoadPopup{
         id: loadPopup
-        x: (parent.width - width) / 2
-        y: parent.height / 6
-        width: Math.min(parent.width, parent.height) / 3 * 2
-        height: loadColumn.implicitHeight + topPadding + bottomPadding
-        modal: true
-        focus: true
-
-        contentItem: ColumnLayout{
-            id:loadColumn
-            spacing: 30
-
-            Image{
-                id: cropLogo
-                width: loadPopup.width / 1.5
-                height: loadPopup.height / 2
-                anchors.centerIn: loadColumn
-                fillMode: Image.PreserveAspectFit
-                source: "Img/cropped-logo.png"
-            }
-
-            Label{
-                id: loadText
-                text: "Завантаження..."
-                font.pixelSize: 20
-                elide: Label.ElideRight
-                horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-                anchors.top: cropLogo.bottom
-                Layout.fillWidth: true
-                anchors.bottomMargin: 20
-
-            }
-
-            ProgressBar {
-                indeterminate: true
-                width: loadPopup.availableWidth / 3
-                anchors.top: loadText.bottom
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-        }
     }
 }

@@ -6,5 +6,6 @@
         <file>Img/cropped-logo.png</file>
         <file>XmlList.qml</file>
         <file>FeedDelegate.qml</file>
+        <file>LoadPopup.qml</file>
     </qresource>
 </RCC>
