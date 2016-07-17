@@ -7,9 +7,18 @@ Column {
 
     // Gets image URL from str
     function getImageUrl(str){
-        var result = str.match(/<img src="(.*?)"/g)[0];
-        result = result.slice(result.indexOf("\"") + 1, result.length - 1);
-        return "https:" + result;
+        var matches = str.match(/<img src="(.*?)"/g);
+        var result = "";
+        if (matches === null) {
+            result = "qrc:/Img/cropped-logo.png"
+        }
+        else {
+            result = matches[0];
+            result = result.slice(result.indexOf("\"") + 1, result.length - 1);
+            result = "https:" + result;
+        }
+
+        return result;
     }
 
     // Deletes all HTML tags from str
