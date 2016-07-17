@@ -11,11 +11,11 @@ Popup{
     modal: true
     focus: true
 
-    contentItem: ColumnLayout{
+    contentItem: ColumnLayout {
         id:loadColumn
         spacing: 30
 
-        Image{
+        Image {
             id: cropLogo
             width: loadPopup.width / 1.5
             height: loadPopup.height / 2
@@ -24,7 +24,7 @@ Popup{
             source: "Img/cropped-logo.png"
         }
 
-        Label{
+        Label {
             id: loadText
             text: "Завантаження..."
             font.pixelSize: 20
@@ -33,14 +33,13 @@ Popup{
             verticalAlignment: Qt.AlignVCenter
             anchors.top: cropLogo.bottom
             Layout.fillWidth: true
-            anchors.bottomMargin: 20
-
         }
 
         ProgressBar {
             indeterminate: true
             width: loadPopup.availableWidth / 3
             anchors.top: loadText.bottom
+            anchors.topMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
         }
     }
