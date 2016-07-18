@@ -8,6 +8,7 @@ Rectangle {
     anchors.fill: parent
     width: 800
     height: 480
+    visible: false
 
     property string feedUrl: "https://toloka.to/rss.php?t=1&lite=1&cat=8&toronly=1&thumbs=1"
     property bool loading: feedModel.status === XmlListModel.Loading

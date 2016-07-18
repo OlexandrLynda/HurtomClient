@@ -43,6 +43,36 @@ ApplicationWindow {
         }
     } //ToolBar
 
+    StackView{
+        id: stackView
+        anchors.fill: parent
+
+        initialItem: Pane{
+            id: pane
+
+            Image{
+                id: logo
+                width: pane.availableWidth / 2
+                height: pane.availableHeight / 2
+                anchors.centerIn: parent
+                anchors.verticalCenterOffset: -50
+                fillMode: Image.PreserveAspectFit
+                source: "Img/logo.png"
+            }
+
+            Label{
+                text: "Гуртом толока. Опис: ..."
+                anchors.margins: 20
+                anchors.top: logo.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                horizontalAlignment: Label.AlignHCenter
+                verticalAlignment: Label.AlignVCenter
+                wrapMode: Label.Wrap
+            }
+        }
+    }
+
     Drawer {
         id: drawer
         width: Math.min(window.width, window.height) / 3 * 2
@@ -123,12 +153,13 @@ ApplicationWindow {
                     if(listView.currentIndex != index){
                         listView.currentIndex
                         titleLabel.text = model.title
-                        //stackView.replace(model.source)
                         if(model.flags !== "no_http"){
+                            if(rssNews.visible === false) rssNews.visible = true;
+                            stackView.replace(rssNews)
                             rssNews.feedUrl = model.source
                         }
                         else{
-
+                            stackView.replace(model.source)
                         }
                     }
                     drawer.close()
@@ -137,15 +168,14 @@ ApplicationWindow {
 
             model: ListModel{
                 ListElement{title: "Загальне"; ico: "Ico/default.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=11&thumbs=1"}
-                ListElement{title: "Відео Гуртом"; ico: "Ico/hurtomVideo.gif"; flags: "no_http"}
+                ListElement{title: "Відео Гуртом"; ico: "Ico/hurtomVideo.gif"; flags: "no_http"; source: "qrc:/staticInfo.qml"}
                 ListElement{title: "Фільми"; ico: "Ico/video.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=8&toronly=1&thumbs=1"}
                 ListElement{title: "Музика"; ico: "Ico/music.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=7&toronly=1&thumbs=1"}
                 ListElement{title: "Література"; ico: "Ico/book.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=13&toronly=1&thumbs=1"}
                 ListElement{title: "Програми"; ico: "Ico/app.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=3&toronly=1&thumbs=1"}
                 ListElement{title: "Ігри"; ico: "Ico/game.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=4&toronly=1&thumbs=1"}
-                ListElement{title: "Озвучення"; ico: "Ico/voiceRecorder.png"; flags: "no_http"}
-                ListElement{title: "Смітник"; ico: "Ico/trash.png"; flags: "no_http" }
-                //ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
+                ListElement{title: "Озвучення"; ico: "Ico/voiceRecorder.png"; flags: "no_http"; source: "qrc:/staticInfo.qml"}
+                ListElement{title: "Смітник"; ico: "Ico/trash.png"; flags: "no_http"; source: "qrc:/staticInfo.qml"}
             }
             ScrollIndicator.vertical: ScrollIndicator{}
         }
@@ -164,35 +194,7 @@ ApplicationWindow {
         }
     }
 
-    StackView{
-        id: stackView
-        anchors.fill: parent
 
-        initialItem: Pane{
-            id: pane
-
-            Image{
-                id: logo
-                width: pane.availableWidth / 2
-                height: pane.availableHeight / 2
-                anchors.centerIn: parent
-                anchors.verticalCenterOffset: -50
-                fillMode: Image.PreserveAspectFit
-                source: "Img/logo.png"
-            }
-
-            Label{
-                text: "Гуртом толока. Опис: ..."
-                anchors.margins: 20
-                anchors.top: logo.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
-                horizontalAlignment: Label.AlignHCenter
-                verticalAlignment: Label.AlignVCenter
-                wrapMode: Label.Wrap
-            }
-        }
-    }
     XmlList{
         id: rssNews
         onLoadingChanged: {

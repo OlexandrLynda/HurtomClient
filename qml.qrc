@@ -21,5 +21,6 @@
         <file>Ico/trash.png</file>
         <file>Ico/video.png</file>
         <file>Ico/voiceRecorder.png</file>
+        <file>staticInfo.qml</file>
     </qresource>
 </RCC>
