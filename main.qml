@@ -43,21 +43,42 @@ ApplicationWindow {
         }
     } //ToolBar
 
-    Drawer{
+    Drawer {
         id: drawer
         width: Math.min(window.width, window.height) / 3 * 2
         height: window.height
 
-        Rectangle{
+        Rectangle {
             id: header
             width: parent.width
             height: toolBar.height
+//            RowLayout{
+//                spacing: 15
+//                anchors.fill: parent
+
             TextField {
-                implicitWidth: parent.width / 10 * 9
+                id: searchField
+                implicitWidth: parent.width / 10 * 7
                 implicitHeight: parent.height / 10 * 9
                 anchors.centerIn: parent
                 placeholderText: "Пошук ..."
             }
+
+//            Button {
+//                height: header.height / 3 * 2
+//                width: height
+//                contentItem: Image{
+//                    fillMode: Image.PreserveAspectFit
+//                    horizontalAlignment: Image.AlignHCenter
+//                    verticalAlignment: Image.AlignVCenter
+//                    source: "Ico/search.png"
+//                }
+//                onClicked:
+//                {
+//                    //search(searchField.text)
+//                }
+//            }
+//            }
         }
 
         ListView{
@@ -77,20 +98,22 @@ ApplicationWindow {
 
                 Item{
                     id: empty
-                    width: ico.width / 3
+                    width: icon.width / 3
                 }
 
                 Image{
-                    id: ico
-                    fillMode: Image.Pad
+                    id: icon
+                    height: parent.height / 3 * 2
+                    width: height
+                    fillMode: Image.PreserveAspectFit
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: empty.right
-                    source: "Img/drawer.png"
+                    source: model.ico
                 }
 
                 Label{
                     text: model.title
-                    anchors.left: ico.right
+                    anchors.left: icon.right
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: empty.width
                 }
@@ -113,15 +136,15 @@ ApplicationWindow {
             }
 
             model: ListModel{
-                ListElement{title: "Загальне"; img: ""; source: "https://toloka.to/rss.php?t=1&lite=1&cat=11&thumbs=1"}
-                ListElement{title: "Відео Гуртом"; flags: "no_http"}
-                ListElement{title: "Фільми"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=8&toronly=1&thumbs=1"}
-                ListElement{title: "Музика"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=7&toronly=1&thumbs=1"}
-                ListElement{title: "Література"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=13&toronly=1&thumbs=1"}
-                ListElement{title: "Програми"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=3&toronly=1&thumbs=1"}
-                ListElement{title: "Ігри"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=4&toronly=1&thumbs=1"}
-                ListElement{title: "Озвучення"; flags: "no_http"}
-                ListElement{title: "Смітник"; flags: "no_http" }
+                ListElement{title: "Загальне"; ico: "Ico/default.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=11&thumbs=1"}
+                ListElement{title: "Відео Гуртом"; ico: "Ico/hurtomVideo.gif"; flags: "no_http"}
+                ListElement{title: "Фільми"; ico: "Ico/video.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=8&toronly=1&thumbs=1"}
+                ListElement{title: "Музика"; ico: "Ico/music.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=7&toronly=1&thumbs=1"}
+                ListElement{title: "Література"; ico: "Ico/book.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=13&toronly=1&thumbs=1"}
+                ListElement{title: "Програми"; ico: "Ico/app.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=3&toronly=1&thumbs=1"}
+                ListElement{title: "Ігри"; ico: "Ico/game.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=4&toronly=1&thumbs=1"}
+                ListElement{title: "Озвучення"; ico: "Ico/voiceRecorder.png"; flags: "no_http"}
+                ListElement{title: "Смітник"; ico: "Ico/trash.png"; flags: "no_http" }
                 //ListElement{title: "titleOfCategory"; source: "qrc:/pages/*.qml"
             }
             ScrollIndicator.vertical: ScrollIndicator{}
