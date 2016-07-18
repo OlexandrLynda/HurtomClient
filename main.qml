@@ -69,10 +69,31 @@ ApplicationWindow {
             anchors.bottom: footer.top
             clip: true
 
+
             delegate: ItemDelegate{
                 id: item
                 width: parent.width
-                text: model.title
+                //text: model.title
+
+                Item{
+                    id: empty
+                    width: ico.width / 3
+                }
+
+                Image{
+                    id: ico
+                    fillMode: Image.Pad
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: empty.right
+                    source: "Img/drawer.png"
+                }
+
+                Label{
+                    text: model.title
+                    anchors.left: ico.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.leftMargin: empty.width
+                }
 
                 highlighted: ListView.isCurrentItem
                 onClicked: {
