@@ -7,5 +7,19 @@
         <file>XmlList.qml</file>
         <file>FeedDelegate.qml</file>
         <file>LoadPopup.qml</file>
+        <file>Ico/book.png</file>
+        <file>Ico/app.png</file>
+        <file>Ico/back.png</file>
+        <file>Ico/default.png</file>
+        <file>Ico/game.png</file>
+        <file>Ico/hurtomVideo.gif</file>
+        <file>Ico/IconAndroid.png</file>
+        <file>Ico/IconIos.png</file>
+        <file>Ico/music.png</file>
+        <file>Ico/search.png</file>
+        <file>Ico/settings.png</file>
+        <file>Ico/trash.png</file>
+        <file>Ico/video.png</file>
+        <file>Ico/voiceRecorder.png</file>
     </qresource>
 </RCC>
