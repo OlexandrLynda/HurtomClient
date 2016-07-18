@@ -22,5 +22,6 @@
         <file>Ico/video.png</file>
         <file>Ico/voiceRecorder.png</file>
         <file>staticInfo.qml</file>
+        <file>JsonSearch.qml</file>
     </qresource>
 </RCC>
