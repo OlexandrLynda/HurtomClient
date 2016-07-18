@@ -92,6 +92,13 @@ ApplicationWindow {
                 implicitHeight: parent.height / 10 * 9
                 anchors.centerIn: parent
                 placeholderText: "Пошук ..."
+                onAccepted: {
+                    search.getData(searchField.text)
+                    stackView.replace(search)
+                    if(search.visible === false)
+                        search.visible = true;
+                }
+
             }
 
 //            Button {
@@ -205,6 +212,12 @@ ApplicationWindow {
                 loadPopup.close()
             }
         }
+    }
+
+    JsonSearch {
+                id: search
+                width: window.width
+                visible: false
     }
 
     LoadPopup{
