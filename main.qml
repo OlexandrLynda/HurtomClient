@@ -97,6 +97,8 @@ ApplicationWindow {
                     stackView.replace(search)
                     if(search.visible === false)
                         search.visible = true;
+                    text = "";
+                    drawer.close();
                 }
 
             }
