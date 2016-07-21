@@ -1,0 +1,10 @@
+#include "parsehurtomxml.h"
+
+int main()
+{
+    QString adress = "D:/Qt_projects/XML_Hurtom/rss.xml";
+    ParseHurtomXml* xml = new ParseHurtomXml(adress);
+    xml->readXml();
+
+    return 0;
+}
