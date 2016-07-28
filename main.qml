@@ -82,9 +82,9 @@ ApplicationWindow {
             id: header
             width: parent.width
             height: toolBar.height
-//            RowLayout{
-//                spacing: 15
-//                anchors.fill: parent
+            //            RowLayout{
+            //                spacing: 15
+            //                anchors.fill: parent
 
             TextField {
                 id: searchField
@@ -103,21 +103,21 @@ ApplicationWindow {
 
             }
 
-//            Button {
-//                height: header.height / 3 * 2
-//                width: height
-//                contentItem: Image{
-//                    fillMode: Image.PreserveAspectFit
-//                    horizontalAlignment: Image.AlignHCenter
-//                    verticalAlignment: Image.AlignVCenter
-//                    source: "Ico/search.png"
-//                }
-//                onClicked:
-//                {
-//                    //search(searchField.text)
-//                }
-//            }
-//            }
+            //            Button {
+            //                height: header.height / 3 * 2
+            //                width: height
+            //                contentItem: Image{
+            //                    fillMode: Image.PreserveAspectFit
+            //                    horizontalAlignment: Image.AlignHCenter
+            //                    verticalAlignment: Image.AlignVCenter
+            //                    source: "Ico/search.png"
+            //                }
+            //                onClicked:
+            //                {
+            //                    //search(searchField.text)
+            //                }
+            //            }
+            //            }
         }
 
         ListView{
@@ -140,7 +140,7 @@ ApplicationWindow {
                     width: icon.width / 3
                 }
 
-                Image{
+                Image {
                     id: icon
                     height: parent.height / 3 * 2
                     width: height
@@ -177,7 +177,7 @@ ApplicationWindow {
 
             model: ListModel{
                 ListElement{title: "Загальне"; ico: "Ico/default.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=11&thumbs=1"}
-                ListElement{title: "Відео Гуртом"; ico: "Ico/hurtomVideo.gif"; flags: "no_http"; source: "qrc:/staticInfo.qml"}
+                ListElement{title: "Відео Гуртом"; ico: "Ico/videoHurtom.png"; flags: "no_http"; source: "qrc:/staticInfo.qml"}
                 ListElement{title: "Фільми"; ico: "Ico/video.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=8&toronly=1&thumbs=1"}
                 ListElement{title: "Музика"; ico: "Ico/music.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=7&toronly=1&thumbs=1"}
                 ListElement{title: "Література"; ico: "Ico/book.png"; source: "https://toloka.to/rss.php?t=1&lite=1&cat=13&toronly=1&thumbs=1"}
@@ -196,7 +196,24 @@ ApplicationWindow {
             color: "green"
 
             RowLayout{
-                ToolButton{text: "1"}
+                spacing: 30
+                ToolButton{
+                    height: footer.height
+                    width: height
+                    contentItem: Image{
+                        fillMode: Image.PreserveAspectFit
+                        height: footer.height
+                        width: height
+                        horizontalAlignment: Image.AlignHCenter
+                        verticalAlignment: Image.AlignVCenter
+                        source: "Ico/settings.png"
+                    }
+                    onClicked:
+                    {
+                        drawer.close()
+                    }
+                }
+
                 ToolButton{text: "2"}
                 ToolButton{text: "3"}
             }
@@ -217,9 +234,9 @@ ApplicationWindow {
     }
 
     JsonSearch {
-                id: search
-                width: window.width
-                visible: false
+        id: search
+        width: window.width
+        visible: false
     }
 
     LoadPopup{

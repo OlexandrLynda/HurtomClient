@@ -12,7 +12,6 @@
         <file>Ico/back.png</file>
         <file>Ico/default.png</file>
         <file>Ico/game.png</file>
-        <file>Ico/hurtomVideo.gif</file>
         <file>Ico/IconAndroid.png</file>
         <file>Ico/IconIos.png</file>
         <file>Ico/music.png</file>
@@ -23,5 +22,6 @@
         <file>Ico/voiceRecorder.png</file>
         <file>staticInfo.qml</file>
         <file>JsonSearch.qml</file>
+        <file>Ico/videoHurtom.png</file>
     </qresource>
 </RCC>
