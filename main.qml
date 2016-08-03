@@ -196,26 +196,21 @@ ApplicationWindow {
             color: "green"
 
             RowLayout{
-                spacing: 30
-                ToolButton{
-                    height: footer.height
-                    width: height
-                    contentItem: Image{
-                        fillMode: Image.PreserveAspectFit
-                        height: footer.height
-                        width: height
-                        horizontalAlignment: Image.AlignHCenter
-                        verticalAlignment: Image.AlignVCenter
-                        source: "Ico/settings.png"
-                    }
-                    onClicked:
-                    {
-                        drawer.close()
-                    }
+                spacing: 5
+                anchors.fill: footer
+
+                Button{
+                    text: "Settings"
+                }
+                Button{
+                    text: "Info"
+                }
+                Button{
+                    text: "Exit"
                 }
 
-                ToolButton{text: "2"}
-                ToolButton{text: "3"}
+                Item { Layout.fillWidth: true }
+
             }
         }
     }

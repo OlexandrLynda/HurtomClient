@@ -43,15 +43,57 @@ Rectangle {
         XmlRole { name: "pubDate"; query: "pubDate/string()" }
     }
 
-    ListView {
+    GridView {
         id: list
-
+        cellHeight: window.height / 2.5
         anchors.fill: parent
         model: feedModel
-        orientation: ListView.Vertical
+        flickableDirection: Flickable.VerticalFlick
         footer: footerText
-        delegate: FeedDelegate {}
+        delegate: Component{
+            id: newsDelegate
+
+            Rectangle{
+                id: backgroud
+                color: "green"
+                height: list.cellHeight
+
+                function getImageUrl(str){
+                    var matches = str.match(/<img src="(.*?)"/g);
+                    var result = "";
+                    if (matches === null) {
+                        result = "qrc:/Img/cropped-logo.png"
+                    }
+                    else {
+                        result = matches[0];
+                        result = result.slice(result.indexOf("\"") + 1, result.length - 1);
+                        result = "https:" + result;
+                    }
+
+                    return result;
+                }
+
+                // Deletes all HTML tags from str
+                function getCleanText(str){
+                    var clean = str.replace(/<\/?[^>]+(>|$)/g, "");
+                    return clean;
+                }
+                Image {
+                    id: titleImage
+                    height: parent.height
+//                    width: 100
+                    source: getImageUrl(description)
+                    fillMode: Image.PreserveAspectFit
+                }
+                Text{
+                    text: "Title"
+                }
+            }
+
+        }
     }
+
+
 
     Component {
         id: footerText

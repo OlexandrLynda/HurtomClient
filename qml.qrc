@@ -23,5 +23,8 @@
         <file>staticInfo.qml</file>
         <file>JsonSearch.qml</file>
         <file>Ico/videoHurtom.png</file>
+        <file>Ico/info.png</file>
+        <file>Ico/cancel-button.png</file>
+        <file>NewsDelegate.qml</file>
     </qresource>
 </RCC>
