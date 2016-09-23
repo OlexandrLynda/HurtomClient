@@ -10,6 +10,8 @@ ApplicationWindow {
     height: 480
     title: qsTr("Hurtom client")
 
+    onAfterRendering: rssNews.find_column_number()
+
     header: ToolBar{
         id: toolBar
         Material.foreground: "white"
