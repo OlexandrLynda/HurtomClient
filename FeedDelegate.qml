@@ -1,24 +1,40 @@
-import QtQuick 2.2
+import QtQuick 2.7
 
 Rectangle {
     id: rootElement
 
-    border.width: 1
-    border.color: "blue"
+    border.width: 0;
+
+    property bool requestToOpen
+    property bool defaultImg: false
+
+    property string imgUrl
+
+    //Get out info
+    function getInfo(number) {
+        var info = "";
+        switch(number) {
+        case 0: info = title; break;
+        case 1: info = rootElement.imgUrl; break;
+        case 2: info = getCleanText(description); break;
+        }
+        return info;
+    }
 
     // Gets image URL from str
         function getImageUrl(str) {
             var matches = str.match(/<img src="(.*?)"/g);
             var result = "";
             if (matches === null) {
-                result = "qrc:/Img/cropped-logo.png"
+                rootElement.defaultImg = true;
+                result = "qrc:/Img/cropped-logo.png";
             }
             else {
                 result = matches[0];
                 result = result.slice(result.indexOf("\"") + 1, result.length - 1);
                 result = "https:" + result;
             }
-
+            rootElement.imgUrl = result;
             return result;
         }
 
@@ -28,20 +44,26 @@ Rectangle {
             return clean;
         }
 
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                requestToOpen = true;
+            }
+        }
+
        Rectangle {
            id: img
-           width: rootElement.width/2 - border_width
-           height: rootElement.height - 2*border_width
+           width: rootElement.width / 2 - border_width
+           height: rootElement.height
            anchors.verticalCenter : rootElement.verticalCenter
-           anchors.leftMargin: border_width
            anchors.left: rootElement.left
 
            Image {
                id: icon
                anchors.fill: parent
-               fillMode: Image.PreserveAspectCrop
+               fillMode: defaultImg ? Image.PreserveAspectFit : Image.PreserveAspectCrop
                width: rootElement.width / 2
-               height: rootElement.height - 4
+               height: rootElement.height
                source: getImageUrl(description)
            }
        }
@@ -52,12 +74,10 @@ Rectangle {
            height: rootElement.height - 2 * border_width
            anchors.verticalCenter : rootElement.verticalCenter
            anchors.left: img.right
-           color: "#c0c0c0"
+           color: "white"
 
            Text {
                id: textmess
-//               width: txt.width
-//               height: txt.height
                anchors.fill: txt
                font.pixelSize: 14
                wrapMode: Text.WordWrap

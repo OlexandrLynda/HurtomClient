@@ -1,9 +1,12 @@
-import QtQuick 2.2
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 import QtQuick.XmlListModel 2.0
+import QtQuick.Layouts 1.1
 //import QtQuick.Window 2.1
 
 Rectangle {
     id: mainView
+    color: "lightgrey"
 
     function find_column_number()
     {
@@ -74,22 +77,66 @@ Rectangle {
         anchors.fill: parent
         cellWidth: width / n_column;
         cellHeight: img_height * cellWidth / (2 * img_width)
+        //        highlightFollowsCurrentItem: true
+        ScrollIndicator.vertical: ScrollIndicator { }
         model: feedModel
-        footer: footerText
         focus: true
         delegate: FeedDelegate {
+            id: delegate
             width: list.cellWidth - grid_margin
             height: list.cellHeight - grid_margin
+            onRequestToOpenChanged: {
+                if(requestToOpen)
+                {
+                    popup.titleSource = delegate.getInfo(0) + "\n\n" + delegate.getInfo(2);
+                    popup.imgUrl = delegate.getInfo(1);
+
+                    popup.open()
+                    requestToOpen = false
+                }
+
+            }
+        }
+        Popup {
+            id: popup
+
+            property string titleSource
+            property string imgUrl
+
+            x: grid_margin
+            y: grid_margin
+            width: content.implicitWidth
+            height: content.implicitHeight
+            clip: true
+
+            contentItem: Flickable {
+                width: list.width - 2 * grid_margin
+                height: list.height - 2 * grid_margin
+                contentWidth: content.width
+                contentHeight: content.height
+                boundsBehavior: Flickable.OvershootBounds
+                flickableDirection: Flickable.HorizontalAndVerticalFlick
+
+                RowLayout {
+                    id: content
+
+                    Image {
+                        id: img
+                        source: popup.imgUrl
+                        fillMode: Image.PreserveAspectFit
+                    }
+                    TextArea {
+                        id: titleLabel
+                        text: popup.titleSource
+                        readOnly: true
+                        wrapMode: Text.Wrap
+                        anchors.leftMargin: grid_margin
+                        implicitWidth: list.width / 2 - 2 * grid_margin
+                    }
+
+                }
+            }
         }
     }
 
-    Component {
-        id: footerText
-
-        Rectangle {
-            width: parent.width
-            height: 1
-            color: "red"
-        }
-    }
 }
