@@ -23,5 +23,7 @@
         <file>Ico/voiceRecorder.png</file>
         <file>staticInfo.qml</file>
         <file>JsonSearch.qml</file>
+        <file>Ico/star_green.png</file>
+        <file>Ico/star_yellow.png</file>
     </qresource>
 </RCC>

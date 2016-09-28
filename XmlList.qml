@@ -97,6 +97,7 @@ Rectangle {
 
             }
         }
+
         Popup {
             id: popup
 
@@ -124,6 +125,31 @@ Rectangle {
                         id: img
                         source: popup.imgUrl
                         fillMode: Image.PreserveAspectFit
+
+                        Image {
+
+                             id: star
+                             width: parent.height/5
+                             height: parent.height/5
+                             source: "Ico/star_yellow.png"
+
+                             MouseArea {
+                                     id: mouse_star
+                                     anchors.fill: parent
+                                     anchors.margins: -5
+                                     onClicked: {
+                                         //console.log("before " + parent.source)
+                                         if (parent.source == "qrc:/Ico/star_yellow.png"){
+                                            parent.source = "Ico/star_green.png"
+                                         }
+                                         else {
+                                            parent.source = "Ico/star_yellow.png"
+                                         }
+
+                                         //console.log(parent.source)
+                                     }
+                                 }
+                         }
                     }
                     TextArea {
                         id: titleLabel
@@ -137,6 +163,9 @@ Rectangle {
                 }
             }
         }
+
+
+
     }
 
 }
